@@ -17,12 +17,19 @@ class RegistrationForm(FlaskForm):
 bp = Blueprint('register', __name__, url_prefix='/register')
 
 
+@bp.route('/result/<status>')
+def registration(status):
+    return render_template("result.html")
+
 @bp.route('/',methods=(['POST','GET']))
 def new_post():
     form = RegistrationForm()
     if form.validate_on_submit():
+        print("valid")
         # 알람 카테고리에 따라 부트스트랩에서 다른 스타일을 적용 (success, danger) 
         flash(f'{form.username.data} 님 가입 완료!', 'success')
-        return redirect(url_for('main'))
+        return redirect(url_for('.registration', status = form.validate_on_submit()))
+    else:
+        print("not valid")
     return render_template("register.html",form=form)
  

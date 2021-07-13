@@ -1,19 +1,15 @@
 {% extends "base.html"  %}
 {% block content %}
 
-<p>
-     new content
-</p>
-<form action="/" method="post">
-    {{ form.hidden_tag() }}
-    {{ form.username.label }}
-    {{ form.username() }}
-    {{ form.email.label }}
-    {{ form.email() }}
-    {{ form.password.label }}
-    {{ form.password() }}
-    {{ form.confirm_password.label }}
-    {{ form.confirm_password() }}
-    {{ form.submit() }}
-</form>
+
+<div class="container-fluid">
+    <form class="form form-horizontal" method="post" role="form">
+  {{ form.hidden_tag() }}
+  {{ wtf.form_errors(form, hiddens="only") }}
+
+  {{ wtf.form_field(form.field1) }}
+  {{ wtf.form_field(form.field2) }}
+    </form>
+</div>
+
 {% endblock content %}

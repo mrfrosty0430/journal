@@ -1,0 +1,10 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for msg in messages %}
+        {% if loop.last %}
+        
+            <li>{{msg}}</li>
+        {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
